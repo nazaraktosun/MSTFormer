@@ -1,0 +1,80 @@
+name: tlob_experiment
+seed: 42
+
+data:
+  symbol: YKBNK.E
+  obid: 70796
+  train_ratio: 0.7
+  val_ratio: 0.15
+  sequence_length: 30
+  sequence_stride: 30
+  use_time_bucketing: true
+  bucket_ms: 100
+  feature_dim: null
+
+label:
+  price_col: mid_price
+  label_strategy: fixed      # fixed | time | zret | triple_barrier | five_class
+  use_time_based_labelling: false   # legacy toggle; prefer label_strategy
+  time_horizon: "3m"
+  time_threshold: 0.00070
+  label_h_events: 10        # 30 tick sonrasına bak
+  label_k: 5                 # 5 tick yumuşatma
+  label_theta: 0.00035       # 2 baz puan eşik
+  zret_h_events: 30
+  zret_vol_window: 300
+  zret_k: 1.0
+  zret_clip: 10.0
+  zret_timestamp_col: timestamp
+  triple_horizon_ticks: 50
+  triple_volatility_window: 2000
+  triple_barrier_multiplier: 1.0
+  triple_min_threshold_pct: 0.00010
+  triple_max_threshold_pct: 0.005
+  five_horizon_ticks: 200
+  five_volatility_window: 2000
+  five_num_std: 1.0
+
+feature:
+  use_message_features: false
+  orderbook_features:
+    - name: mid_price
+    - name: spread
+
+model:
+  model_type: tlob
+  num_classes: 3
+  d_model: 64
+  t_layers: 2
+  n_heads: 4
+  dropout: 0.2
+  hidden_dim: 256
+  num_layers: 3
+
+training:
+  batch_size: 128
+  learning_rate: 5e-5
+  weight_decay: 0.01
+  epochs: 80
+  early_stopping_patience: 10
+  grad_clip: 1.0
+  use_focal_loss: false
+  focal_gamma: 3.0
+  focal_alpha: null
+  use_auto_focal_alpha: true
+  use_class_weights: false
+  label_smoothing: 0.0
+  max_grad_norm: 1.0
+  device: cuda
+
+paths:
+  data_dir: data/processed_lob
+  output_dir: runs
+
+tracking:
+  enable_mlflow: true
+  tracking_uri: null
+  registry_uri: null
+  experiment_name: mftformer
+  run_name: null
+  tags: {}

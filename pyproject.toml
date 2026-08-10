@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bullsense"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "numpy>=1.24.0",
+    "polars>=0.20",
+    "scikit-learn>=1.3.0",
+    "clickhouse-connect>=0.7",
+    "pydantic>=2",
+    "mlflow>=2.10",
+]
+
+# `hft_features` ships as its own distribution from libs/bullsense_features
+# (installed by requirements.txt), so it is deliberately not declared here --
+# two distributions claiming the same import package would conflict.
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bullsense*"]

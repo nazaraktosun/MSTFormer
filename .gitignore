@@ -1,0 +1,114 @@
+# Python caches and build products
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Virtual environments and local secrets
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+*~
+
+# Notebooks and exploratory work
+notebooks/
+*.ipynb
+.ipynb_checkpoints/
+
+# Paper working files (final manuscript source may still be committed)
+paper/drafts/
+paper/working/
+paper/build/
+drafts/
+working_drafts/
+working-drafts/
+*.draft.md
+*.draft.tex
+*.draft.pdf
+
+# LaTeX build products
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# Experiment definitions, entry points and tests (kept local, not published)
+/configs/
+/scripts/
+/tests/
+
+# Data and generated features
+/data/
+/datasets/
+/features/
+*.npy
+*.npz
+*.npy.gz
+*.csv
+*.tsv
+*.parquet
+*.parquets
+*.parq
+*.pq
+*.feather
+*.arrow
+*.orc
+*.avro
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.db
+*.sqlite
+*.sqlite3
+
+# Models and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.onnx
+/checkpoints/
+
+# Archives and compressed data dumps
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+
+# Experiment tracking and generated outputs
+/artifacts/
+/mlruns/
+/outputs/
+/runs/
+/scripts/runs/
+/wandb/
+*.log
+
+# Temporary command files
+tmp_*.sh
